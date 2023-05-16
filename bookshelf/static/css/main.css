@@ -1,0 +1,62 @@
+img.book-image {
+    width: 150px;
+    height: 190px;
+}
+.nav-pills {
+    background-color: #40496f;
+}
+
+.nav-pills .nav-link {
+    color: white;
+}
+
+.nav-link:hover {
+    color: black; 
+  }
+
+.book-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+.book-image-container {
+    margin-right: 10px;
+}
+
+.form-control {
+    width: 200px; /* Adjust the width as needed */
+}
+
+.form-control:focus::placeholder {
+    color: transparent;
+}
+
+#score-tab {
+    display: inline-block;
+    background-color: #4189d1;
+    color: #ffffff;
+    padding: 5px 25px;
+    border-radius: 5px;
+}
+#member-tab {
+    display: inline-block;
+    background-color: #15a776;
+    color: #ffffff;
+    padding: 5px 25px;
+    border-radius: 10px;
+}
+#edit-tab {
+    display: inline-block;
+    background-color: #68e278;
+    color: #ffffff;
+    padding: 5px 28px;
+    border-radius: 10px;
+}
+#delete-tab {
+    display: inline-block;
+    background-color: #db5858;
+    color: #ffffff;
+    padding: 5px 25px;
+    border-radius: 10px;
+}
+

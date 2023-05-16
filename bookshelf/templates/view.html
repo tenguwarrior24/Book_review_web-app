@@ -1,0 +1,65 @@
+{#
+# Copyright 2015 Google Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#}
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="score-tab">&#9733; Score {{score}}</div>
+<div id="member-tab"># {{review_count}} users </div>
+<a href = "edit" id = "edit-tab" id="edit-tab">Edit</a> 
+<a href = "delete" id = "delete-tab" >Delete</a>
+
+<div class="book-container">
+   <div class="book-image-container" style="margin-top:20px">
+      <img src="{{book.imageUrl}}" alt="Book Image" class="book-image">
+      {% if current_user.is_authenticated %}
+      <div class="rate">
+        <form id="rating-form" method="post">
+          <select id="rating-dropdown" name="rating" style = "width:150px">
+            <option value="0">&#9733; Select a rating</option>
+            <option value="5" {% if review.rating == 5 %} selected {% endif %}>&#9733; (5) Excellent</option>
+            <option value="4" {% if review.rating == 4 %} selected {% endif %}>&#9733; (4) Good</option>
+            <option value="3" {% if review.rating == 3 %} selected {% endif %}>&#9733; (3) Average</option>
+            <option value="2" {% if review.rating == 2 %} selected {% endif %}>&#9733; (2) Bad</option>
+            <option value="1" {% if review.rating == 1 %} selected {% endif %}>&#9733; (1) Horrible</option>
+          </select>
+        </form>
+      </div>
+      <script>
+          var dropdown = document.getElementById("rating-dropdown");
+          dropdown.addEventListener("change", function() {
+              var form = document.getElementById("rating-form");
+              form.submit();
+          });
+      </script>
+
+      {% else %}
+      <div id="score-tab" style="background-color:rgb(150, 150, 225); width:150px">Login to Rate</div>
+      {% endif %}
+   </div>
+
+  <div class="book-details-container" style="margin-top:10px">
+    <h4 class="book-title" styl="margin-bottom:15px">
+      {{book.title}}
+      <small>{{book.publishedDate}}</small>
+    </h4>
+    <h5 class="book-author" id="score-tab" style="background-color: rgb(97, 182, 132); margin-bottom:10px"> {{book.author|default('Unknown', True)}}</h5>
+    <p class="book-description">{{book.description}}</p>
+  </div>
+</div>
+
+{% endblock %}
